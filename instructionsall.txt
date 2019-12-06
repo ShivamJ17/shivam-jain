@@ -1,0 +1,173 @@
+Install Docker
+-------------------------------------------------
+
+sudo apt-get update
+sudo apt install docker.io
+
+#systemctl start docker
+
+
+#systemctl status docker
+
+#docker run centos
+
+
+#docker images
+
+#docker run -it centos
+
+[root@59839a1b7de2 /]#
+
+#yum install mariadb-server
+
+#exit
+
+#docker commit -m "added mariadb-server" -a "somename" 59839a1b7de2 root/centos-mariadb
+
+#docker images
+
+
+
+#docker ps
+
+
+#docker ps -a
+
+
+#docker ps -l
+
+
+#docker stop container-id
+
+
+
+
+docker swarm:
+================================================================================================
+
+Edit the /etc/hosts file across all three nodes via gedit or vim and do the following changes:
+
+192.168.1.103  dockermanager
+192.168.1.107  dockerworker1
+
+# ping dockerworker1
+
+Install and Run Docker Service
+------------------------------
+# apt-get update
+
+sudo apt install docker.io
+
+# systemctl start docker
+# systemctl enable docker
+
+dockermanager:=
+
+
+$ docker swarm init --advertise-addr 192.168.1.103
+
+slave:
+
+$ docker swarm join --token SWMTKN-1-4htf3vnzmbhc88vxjyguipo91ihmutrxi2p1si2de4whaqylr6-3oed1hnttwkalur1ey7zkdp9l 192.168.1.103:2377
+
+
+$ docker node ls
+
+
+$ docker service create --name my-web1 --publish 8081:80 --replicas 2 nginx
+
+
+
+$ docker service ls
+
+$ docker service ps my-web1
+
+
+
+$ curl http://dockermanager:8081
+
+
+$ docker service scale my-web1=3
+
+docker service ls
+docker service ps
+
+
+
+docker service inspect
+
+
+
+
+git==============
+=========================
+
+git init
+
+git add file_name
+
+git commit -m "message"
+
+git remote add origin "link"
+
+git pull origin master
+
+git push origin master
+
+
+
+docker print program======
+
+mkdir abc
+cd abc
+
+mkdir add
+cd add
+nano 1.c
+gcc -o add 1.c
+
+cd ..
+nano Dockerfile
+(inside Dockerfile)
+{
+FROM ubuntu
+RUN mkdir dir
+COPY add/ /dir
+CMD [ "/dir/executablefilename" ]
+
+}
+
+(now create image)
+docker build -t b1 .
+
+(now run image)
+docker run -i b1
+
+
+for jenkins==================
+
+google search "how to install jenkins and then open 1st site"
+
+for connecting codeenvy and github====
+
+first create new workspace and itn corner add url of git repository
+then press "ctrl + ," in the opened file add inside curly braces 55 cmds
+{
+git.user.email
+git.user.name
+git.postcommitcommand
+git.defaultclonedirectory
+git.autofetch
+}
+
+then create new file by rightclick on the filename and commit it 
+and you will be asked for commit msg, username , password of github 
+
+
+
+
+
+
+
+
+
